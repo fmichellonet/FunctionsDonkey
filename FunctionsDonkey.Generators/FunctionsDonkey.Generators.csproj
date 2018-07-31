@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Templates\HttpTrigger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\HttpTrigger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mustache" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>
