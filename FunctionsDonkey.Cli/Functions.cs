@@ -1,21 +1,27 @@
 namespace FunctionsDonkey.Cli
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using Microsoft.Extensions.DependencyInjection;
 	using Templating;
 
 	public class Functions : IFunctionBuilder
-    {	
-		private readonly FunctionIntrospection _introspection = new FunctionIntrospection();
-		
-		public static FunctionIntrospection Generation(IApiDefinition apiDefinition)
+    {
+		private readonly string _namespace;
+
+		private Functions(string @namespace)
 		{
-            var builder = new Functions();
+			_namespace = @namespace;
+		}
+
+		private readonly Dictionary<string, FunctionIntrospection> _introspection = new Dictionary<string, FunctionIntrospection>();
+		
+		public static IDictionary<string, FunctionIntrospection> Generation(IApiDefinition apiDefinition)
+		{
+            var builder = new Functions(apiDefinition.GetType().Namespace);
 			apiDefinition.Build(builder);
-
-			builder._introspection.Namespace = apiDefinition.GetType().Namespace;
-
+			
 			return builder._introspection;
 		}
 
@@ -26,9 +32,15 @@ namespace FunctionsDonkey.Cli
 
 		public IFunctionBuilder AddHttp<TCommand, THandler>(string route)
 		{
-			_introspection.TemplateFile = Template.HttpTrigger;
-			_introspection.Name = route.Split("/").Last().FirstCharToUpper();
-			_introspection.CommandTypeName = typeof(TCommand).FullName;
+			var httpIntrospection = new FunctionIntrospection
+			{
+				Namespace = _namespace,
+				TemplateFile = Template.HttpTrigger,
+				Name = route.Split("/").Last().FirstCharToUpper(),
+				CommandTypeName = typeof(TCommand).FullName
+			};
+
+			_introspection.Add(route, httpIntrospection);
 
 			return this;
 		}

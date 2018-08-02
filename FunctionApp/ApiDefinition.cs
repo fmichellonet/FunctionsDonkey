@@ -14,7 +14,8 @@
 				   {
 					   //services.AddTransient<IRequestHandler<ItemAddedToCart, string>, ItemAddedToCartHandler>();
 				   })
-				   .AddHttp<ItemAddedToCart, ItemAddedToCartHandler>("addToCart");
+                   .AddHttp<ItemAddedToCart, ItemAddedToCartHandler>("addToCart")
+				   .AddHttp<ItemAddedToCart, ItemAddedToCartHandler>("addToCart2");
 		}
 	}
 }

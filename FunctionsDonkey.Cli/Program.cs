@@ -8,27 +8,29 @@
 
 	public static class Program
 	{
-		public static async Task Main(string[] args)
+		public static void Main(string[] args)
 		{
-			var parsed = Parser.Default.ParseArguments<Options>(args)
-							   .WithParsed(async opts =>
-								   await RunOptionsAndReturnExitCode(opts).ConfigureAwait(false));
+			Parser.Default.ParseArguments<Options>(args)
+				  .WithParsed(opts => RunOptionsAndReturnExitCode(opts).Wait());
 		}
 
-		private static async Task RunOptionsAndReturnExitCode(Options opts)
+        private static async Task RunOptionsAndReturnExitCode(Options opts)
 		{
 			var pointedAssembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(opts.AssemblyFilePath);
 			var definition = pointedAssembly.GetApiDefinition();
-			var functionIntrospection = Functions.Generation(definition);
+			var functionIntrospections = Functions.Generation(definition);
 
-			using (var stream = File.OpenWrite(Path.Combine(opts.OutputDirectory,
-				$"{functionIntrospection.Name.FirstCharToUpper()}.cs")))
+			foreach (var introspection in functionIntrospections.Values)
 			{
-				using (var writer = new StreamWriter(stream))
+				using (var stream = File.OpenWrite(Path.Combine(opts.OutputDirectory,
+					$"{introspection.Name.FirstCharToUpper()}.cs")))
 				{
-					await Generator.GenerateAsync(writer, functionIntrospection).ConfigureAwait(false);
+					using (var writer = new StreamWriter(stream))
+					{
+						await Generator.GenerateAsync(writer, introspection).ConfigureAwait(false);
+					}
 				}
-			}
+            }
 		}
 
 		internal class Options
