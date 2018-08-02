@@ -2,8 +2,8 @@ namespace FunctionsDonkey.Cli
 {
 	using System;
 	using System.Linq;
-	using Generators;
 	using Microsoft.Extensions.DependencyInjection;
+	using Templating;
 
 	public class Functions : IFunctionBuilder
     {	

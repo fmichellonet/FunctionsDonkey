@@ -1,4 +1,4 @@
-﻿namespace FunctionsDonkey.Generators
+﻿namespace FunctionsDonkey.Templating
 {
 	public interface IFunctionIntrospection
 	{

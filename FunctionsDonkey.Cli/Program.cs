@@ -4,7 +4,7 @@
 	using System.Runtime.Loader;
 	using System.Threading.Tasks;
 	using CommandLine;
-	using Generators;
+	using Templating;
 
 	public static class Program
 	{

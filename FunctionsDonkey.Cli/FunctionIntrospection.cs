@@ -1,6 +1,7 @@
 ﻿namespace FunctionsDonkey.Cli
 {
-	using Generators;
+	using Templating;
+
 	public class FunctionIntrospection : IFunctionIntrospection
 	{
 		public string Name { get; set; }

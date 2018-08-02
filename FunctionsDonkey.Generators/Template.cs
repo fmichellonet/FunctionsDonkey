@@ -1,7 +1,7 @@
-﻿namespace FunctionsDonkey.Generators
+﻿namespace FunctionsDonkey.Templating
 {
 	public static class Template
 	{
-		public const string HttpTrigger = @"FunctionsDonkey.Generators.Templates.HttpTrigger.cs";
+		public const string HttpTrigger = @"FunctionsDonkey.Templating.Templates.HttpTrigger.cs";
 	}
 }

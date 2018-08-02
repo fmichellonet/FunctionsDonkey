@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FunctionsDonkey.Generators\FunctionsDonkey.Generators.csproj" />
+    <ProjectReference Include="..\FunctionsDonkey.Generators\FunctionsDonkey.Templating.csproj" />
     <ProjectReference Include="..\FunctionsDonkey\FunctionsDonkey.csproj" />
   </ItemGroup>
 

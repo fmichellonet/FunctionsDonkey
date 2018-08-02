@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp", "FunctionApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionsDonkey", "FunctionsDonkey\FunctionsDonkey.csproj", "{E985190A-F9FC-4225-9A28-2F5D1F779C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionsDonkey.Generators", "FunctionsDonkey.Generators\FunctionsDonkey.Generators.csproj", "{5E1778B4-8862-4C20-A8A2-D1DAE5BFCFA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionsDonkey.Templating", "FunctionsDonkey.Generators\FunctionsDonkey.Templating.csproj", "{5E1778B4-8862-4C20-A8A2-D1DAE5BFCFA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
